@@ -12,7 +12,7 @@ public:
 	bool load();
 	bool unload();
 
-	uint32_t Get_Version();
+	uint32_t Get_Version(std::ifstream& file);
 	uint32_t Get_Num_Sections();
 
 	const RW_HEADER& GetSectionHeader(uint32_t index) const;
@@ -23,7 +23,7 @@ public:
 
 private:
 	RW_HEADER clump;
-
+	uint32_t numberOfSections;
 	std::vector<RW_HEADER> m_section_Headers;
 	std::vector<SECTION_DATA> m_section_Data;
 

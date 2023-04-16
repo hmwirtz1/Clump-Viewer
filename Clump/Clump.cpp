@@ -18,9 +18,12 @@ bool Clump::unload()
 	return false;
 }
 
-uint32_t Clump::Get_Version()
+uint32_t Clump::Get_Version(std::ifstream& file)
 {
-	return uint32_t();
+
+	file.ignore(sizeof(RW_HEADER) - sizeof(clump.SECTION_SIZE) - sizeof(clump.SECTION_TYPE));
+	file.read(reinterpret_cast<char*>(&clump.RW_Version), sizeof(clump.RW_Version));
+	return clump.RW_Version;
 }
 
 uint32_t Clump::Get_Num_Sections()
